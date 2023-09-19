@@ -19,8 +19,10 @@ def test_login(playwright: Playwright) -> None:
     page.goto("http://109.205.183.105/")
     page.goto(
         "http://109.205.183.105:8080/realms/captain/protocol/openid-connect/auth?client_id=captain-fe&redirect_uri=http%3A%2F%2F109.205.183.105%2F&state=a759ebdf-a18f-42fc-8669-09472396830a&response_mode=fragment&response_type=code&scope=openid&nonce=bdbd4121-7fdd-4b15-8fc9-3c9dd970c6ca")
+
     sleep(1)
-    page.get_by_label("Username or email").type("default.admin@tect.com")
+
+    page.locator("#username").type("default.admin@tect.com")
     sleep(1)
     page.get_by_label("Password").type("Qwerty113!")
     sleep(1)
@@ -40,6 +42,7 @@ def test_login(playwright: Playwright) -> None:
     sleep(1)
     page.get_by_role("link", name="Archive").click()
     sleep(1)
+
     # ---------------------
     context.close()
     browser.close()
